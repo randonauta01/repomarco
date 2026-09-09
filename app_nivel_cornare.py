@@ -41,7 +41,7 @@ CANDIDATOS_LON = ["lng", "lon", "longitude", "longitud"]
 # ------------------------------------------------------------------
 st.set_page_config(
     page_title="Nivel de estación — CORNARE",
-    page_icon="🌊",
+    page_icon="🏞️",
     layout="wide"
 )
 
@@ -269,7 +269,7 @@ def determinar_estado_nivel(nivel_actual, promedio):
 # SIDEBAR — INFORMACIÓN DEL ESTUDIANTE
 # ------------------------------------------------------------------
 
-st.sidebar.header("👩‍🎓 Datos del estudiante")
+st.sidebar.header(" Datos del estudiante")
 
 nombre_estudiante = st.sidebar.text_input(
     "Nombre del estudiante",
@@ -305,7 +305,7 @@ tipo_fuente = st.sidebar.selectbox(
 # FECHAS Y CALIDAD
 # ------------------------------------------------------------------
 
-st.sidebar.header("📅 Parámetros de consulta")
+st.sidebar.header("Parámetros de consulta")
 
 fecha_desde = st.sidebar.date_input(
     "Desde",
@@ -328,7 +328,7 @@ calidad = st.sidebar.selectbox(
 # INFORMACIÓN ADICIONAL
 # ------------------------------------------------------------------
 
-st.sidebar.header("📝 Información adicional")
+st.sidebar.header("Información adicional")
 
 observacion = st.sidebar.text_area(
     "Observación",
@@ -336,7 +336,7 @@ observacion = st.sidebar.text_area(
 )
 
 consultar = st.sidebar.button(
-    "🔍 Consultar",
+    " Consultar",
     type="primary"
 )
 
@@ -346,7 +346,7 @@ consultar = st.sidebar.button(
 # ------------------------------------------------------------------
 
 st.title(
-    "🌊 Nivel de ríos y quebradas — CORNARE"
+    "🏞️ Nivel de ríos y quebradas — CORNARE"
 )
 
 st.caption(
@@ -363,22 +363,22 @@ st.caption(
 info1, info2, info3, info4 = st.columns(4)
 
 info1.info(
-    f"👩‍🎓 **Estudiante**\n\n"
+    f" **Estudiante**\n\n"
     f"{nombre_estudiante}"
 )
 
 info2.info(
-    f"📍 **Municipio**\n\n"
+    f" **Municipio**\n\n"
     f"{municipio}"
 )
 
 info3.info(
-    f"💧 **Fuente hídrica**\n\n"
+    f" **Fuente hídrica**\n\n"
     f"{nombre_fuente}"
 )
 
 info4.info(
-    f"🔢 **Estación**\n\n"
+    f" **Estación**\n\n"
     f"{codigo_estacion}"
 )
 
@@ -405,7 +405,7 @@ if consultar:
     if error:
 
         st.error(
-            f"❌ No fue posible realizar la consulta: {error}"
+            f" No fue posible realizar la consulta: {error}"
         )
 
     else:
@@ -421,7 +421,7 @@ if consultar:
         if not registros:
 
             st.warning(
-                "⚠️ No hay registros para esta estación "
+                "No hay registros para esta estación "
                 "y rango de fechas."
             )
 
@@ -492,7 +492,7 @@ if consultar:
             # MÉTRICAS PRINCIPALES
             # ======================================================
 
-            st.subheader("📊 Resultados de la consulta")
+            st.subheader(" Resultados de la consulta")
 
             nivel_promedio = df["nivel"].mean()
             nivel_maximo = df["nivel"].max()
@@ -511,22 +511,22 @@ if consultar:
             col1, col2, col3, col4 = st.columns(4)
 
             col1.metric(
-                "📖 Lecturas",
+                " Lecturas",
                 len(df)
             )
 
             col2.metric(
-                "📏 Nivel promedio",
+                " Nivel promedio",
                 f"{nivel_promedio:.2f}"
             )
 
             col3.metric(
-                "⬆️ Nivel máximo",
+                " Nivel máximo",
                 f"{nivel_maximo:.2f}"
             )
 
             col4.metric(
-                "⬇️ Nivel mínimo",
+                " Nivel mínimo",
                 f"{nivel_minimo:.2f}"
             )
 
@@ -534,27 +534,27 @@ if consultar:
             # SEGUNDA FILA DE MÉTRICAS
             # ======================================================
 
-            st.subheader("🔎 Indicadores adicionales")
+            st.subheader(" Indicadores adicionales")
 
             col5, col6, col7, col8 = st.columns(4)
 
             col5.metric(
-                "🕐 Último nivel",
+                " Último nivel",
                 f"{nivel_actual:.2f}"
             )
 
             col6.metric(
-                "↕️ Rango del nivel",
+                " Rango del nivel",
                 f"{diferencia_niveles:.2f}"
             )
 
             col7.metric(
-                "⭐ Índice de calidad",
+                " Índice de calidad",
                 f"{indice_calidad} / 100"
             )
 
             col8.metric(
-                "⚠️ Outliers",
+                " Outliers",
                 n_outliers
             )
 
@@ -590,7 +590,7 @@ if consultar:
             # GRÁFICO DE LA SERIE
             # ======================================================
 
-            st.subheader("📈 Serie histórica del nivel")
+            st.subheader(" Serie histórica del nivel")
 
             st.line_chart(
                 df.set_index("fecha")["nivel"]
@@ -600,7 +600,7 @@ if consultar:
             # INFORMACIÓN DEL PERÍODO
             # ======================================================
 
-            st.subheader("📅 Información del período")
+            st.subheader(" Información del período")
 
             periodo1, periodo2, periodo3 = st.columns(3)
 
@@ -624,13 +624,13 @@ if consultar:
             # ======================================================
 
             st.subheader(
-                "📍 Ubicación de la estación"
+                " Ubicación de la estación"
             )
 
             if not coords_reales:
 
                 st.caption(
-                    "⚠️ La API no trajo latitud/longitud "
+                    " La API no trajo latitud/longitud "
                     "de la estación. Se muestra la ubicación "
                     "por defecto configurada en la aplicación."
                 )
@@ -685,7 +685,7 @@ if consultar:
             # ======================================================
 
             with st.expander(
-                "ℹ️ Información de la consulta"
+                " Información de la consulta"
             ):
 
                 st.write(
@@ -732,7 +732,7 @@ if consultar:
             # ======================================================
 
             with st.expander(
-                "📄 Ver datos obtenidos"
+                " Ver datos obtenidos"
             ):
 
                 st.dataframe(
@@ -749,7 +749,7 @@ if consultar:
             ).encode("utf-8")
 
             st.download_button(
-                "⬇️ Descargar datos en CSV",
+                " Descargar datos en CSV",
                 csv,
                 file_name=(
                     f"nivel_estacion_"
@@ -763,7 +763,7 @@ if consultar:
             # ======================================================
 
             st.success(
-                f"✅ Consulta realizada correctamente "
+                f" Consulta realizada correctamente "
                 f"para la estación {codigo_estacion} "
                 f"en {municipio}."
             )
@@ -775,14 +775,14 @@ if consultar:
 else:
 
     st.info(
-        "👈 Ajusta los parámetros en el menú lateral "
-        "y presiona **🔍 Consultar** para obtener "
+        " Ajusta los parámetros en el menú lateral "
+        "y presiona ** Consultar** para obtener "
         "los datos de la estación."
     )
 
     st.markdown(
         """
-        ### 🌱 Sobre esta aplicación
+        ###  Sobre esta aplicación
 
         Esta aplicación permite consultar y visualizar
         información sobre el nivel de ríos y quebradas
@@ -790,13 +790,13 @@ else:
 
         **Información configurada:**
 
-        - 👩‍🎓 Estudiante: **Aylin**
-        - 📍 Municipio: **Carmen del Viboral**
-        - 🔢 Estación: **44**
-        - 🌊 Consulta de niveles de agua
-        - 📊 Análisis de calidad de los datos
-        - 📈 Gráfico histórico
-        - 🗺️ Ubicación de la estación
-        - 📥 Descarga de datos en formato CSV
+        -  Estudiante: **Aylin**
+        -  Municipio: **Carmen del Viboral**
+        -  Estación: **44**
+        -  Consulta de niveles de agua
+        -  Análisis de calidad de los datos
+        -  Gráfico histórico
+        -  Ubicación de la estación
+        -  Descarga de datos en formato CSV
         """
     )
